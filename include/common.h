@@ -6,6 +6,9 @@ typedef struct {
 	char *dir_path;
 	int num_threads;
 
+	int compare_mode;
+	char *compare_path;
+
 } Config;
 
 #endif
