@@ -5,6 +5,7 @@
 #include <sys/stat.h>	//dosya bilgileri ceken API
 #include <unistd.h>	// read write close saglayan API
 #include "crawler.h"
+#include "common.h"
 
 void crawl_directory(TaskQueue *q, char *dir_path){
 	DIR *dir;
@@ -14,7 +15,7 @@ void crawl_directory(TaskQueue *q, char *dir_path){
 
 	dir = opendir(dir_path);
 	if (dir == NULL){
-		perror("Dir acilmadi");
+		perror("Directory could not be opened");
 		return;
 	}
 	
@@ -29,6 +30,7 @@ void crawl_directory(TaskQueue *q, char *dir_path){
 		snprintf(full_path, sizeof(full_path), "%s/%s", dir_path, entry->d_name);
 
 		if (lstat(full_path, &file_stat) == -1){
+			perror("ERROR: The File could not be read");
 			continue;
 		}
 
@@ -38,9 +40,22 @@ void crawl_directory(TaskQueue *q, char *dir_path){
 		}
 		else if (S_ISREG(file_stat.st_mode)){
 
-			queue_push(q, full_path); //nevale filesa queueye attik
+			queue_push(q, full_path, file_stat.st_size); //nevale filesa queueye attik
 		}
 	}
 
 	closedir(dir);
+}
+
+void read_from_stdin(TaskQueue *q){
+	char line[4096];
+	struct stat file_stat;
+
+	while (fgets(line, sizeof(line), stdin)){
+		line[strcspn(line, "\n")] = 0;
+		if (strlen(line) == 0) continue;
+		if(lstat(line, &file_stat) != 1 && S_ISREG(file_stat.st_mode)){
+			queue_push(q, line, file_stat.st_size);
+		}
+	}
 }
