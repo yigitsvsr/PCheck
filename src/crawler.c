@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <dirent.h>	//AIdan ogrendim bu lib sayesinde opendir,readdir 
+#include <dirent.h>	//AIdan ogrendim bu lib sayesinde opendir,readdir
 #include <sys/stat.h>	//dosya bilgileri ceken API
 #include <unistd.h>	// read write close saglayan API
 #include "crawler.h"

@@ -8,3 +8,4 @@ void crawl_directory(TaskQueue *q, char *dir_path);
 void read_from_stdin(TaskQueue *q);
 
 #endif
+
