@@ -18,7 +18,7 @@ Ensure you have the compiler and build tools installed in your Linux machine
 
 1.Clone the Repository
 ```bash
-git clone [https://github.com/yigitsvsr/PCheck.git](https://github.com/yigitsvsr/PCheck.git)
+git clone https://github.com/yigitsvsr/PCheck.git
 cd pcheck
 ```
 
@@ -101,13 +101,14 @@ make test
 * **Synchronization:** Thread-safe architecture provided by using `pthread_mutex` for safe memory acces and `pthread_cond`to manage worker states.
 * **Memory Safety:** Project is verified with Valgrind to ensure 0 memory leaks.
 * **Hashing:** Implements the FNV-1a algo for fast non-cryptographic integrity cheks.
-* **Architecture:**
-    * `src/crawler.c`: Handles directory traversal and input parsing.
-    * `src/worker.c`: Handles hash calculation and comparison logic.
-    * `src/queue.c` : Manages dynamic memory and thread synchronization.
-    * `src/config.c`: Manages user interface and reporting.
+
+
+## AI Usage
+We used an AI assistance as a supportive tool during the design and development. The usage was limited to consultation and debugging. We maintained the full control over the implementation logic.
+After defining the core project idea, AI was used to generate a development roadmap and understand the architectural requirements of the Producer-Consumer architecture. We used to discuss and compare alternative data structures and types. But we decided and executed the final selection and implementations. It also used to optimize Makefile Syntax.
+All source code logic, thread synchronization and integration were written and verified by us.
 
 
 ## Authors
 
-* Svsr
+* Yigit Savasir 6824019, Cagan Yetis 6824048, Devin Demirdöven 6824050
